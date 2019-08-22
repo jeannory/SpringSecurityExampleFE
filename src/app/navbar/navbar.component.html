@@ -1,0 +1,57 @@
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-warning">
+  <div class="container">
+    <a class="navbar-brand waves-effect" routerLink="/home">
+      <i class="fa fa-home text-link"><strong class="blue-text"> Home</strong></i>    
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-effect" routerLink="/user">
+          <i class="fa fa-user text-link"> User</i>
+        </a> 
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-effect" routerLink="/manager">
+            <i class="fa fa-cog text-link"> Manager</i>
+          </a> 
+          </li>
+        <li class="nav-item">
+          <a class="nav-link waves-effect" routerLink="/admin">
+          <i class="fa fa-cogs text-link"> Admin</i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item" *ngIf="!token">
+          <button type="button" class="btn btn-success" routerLink="/login"><i class="fa fa-sign-out text-link"> Connexion</i></button>
+        </li>
+        <li class="nav-item" *ngIf="token">
+          <button type="button" class="btn btn-danger" (click)="logout()"><i class="fa fa-sign-out text-link"> Déconnexion</i></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <div class="view"
+             style="background-image: url('/assets/images/paysage-01.jpg'); background-repeat: no-repeat; background-size: cover;">
+          <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+            <div class="text-center white-text mx-5 wow fadeIn">
+            <div class="mt-5">
+              <p>
+                <strong>Application test</strong>
+              </p>
+            </div>
+              <p class="mb-4 d-none d-md-block">
+                <strong>Exemple open source</strong>
+              </p>
+              <p class="btn btn-outline-white btn-lg">SpringBoot Angular Jwt
+              </p>
+            </div> 
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>

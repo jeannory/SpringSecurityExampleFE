@@ -1,0 +1,187 @@
+<div class="container emp-profile" *ngIf="user">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="profile-head">
+                            <h5>
+                              {{user.gender}} {{user.firstName}} {{user.lastName}}
+                            </h5>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Informations</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Modifier" (click)="buttomChangeUser()" *ngIf="!changeUser"/>
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Annuler" (click)="buttomCancelChangeUser()" *ngIf="changeUser"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <h4>Mes droits</h4>
+                    <span class="badge badge-light mr-1" *ngFor="let r of roles">{{r.name}}</span>
+                    <p class="proile-rating">Points fidélités : <span>380</span></p>
+                </div>          
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{user.email}}</p>
+                                    </div>
+                                </div>
+                            <div class="row">                              
+                                <div class="col-md-6">
+                                    <label>Civilité</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p *ngIf="!changeUser">{{user.gender}}</p>
+                                <div *ngIf="changeUser">
+                                <ng-multiselect-dropdown
+                                [placeholder]="'Choisir'"
+                                [data]="dropdownList"
+                                [(ngModel)]="selectedItem"
+                                [settings]="dropdownSettings"
+                                (onSelect)="onItemSelect($event)"
+                                (onSelectAll)="onSelectAll($event)"
+                                [ngModelOptions]="{standalone: true}"
+                              >
+                              </ng-multiselect-dropdown>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Prénom</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p *ngIf="!changeUser">{{user.firstName}}</p>
+                                    <input type="text" id="firstName" value="{{user.firstName}}" class="form-control" [formControl]="firstName" *ngIf="changeUser">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nom</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p *ngIf="!changeUser">{{user.lastName}}</p>
+                                    <input type="text" id="lastName" value="{{user.lastName}}" class="form-control" [formControl]="lastName" *ngIf="changeUser">
+                                </div>
+                            </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Téléphone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p *ngIf="!changeUser">{{user.phoneNumber}}</p>
+                                        <input type="text" id="phoneNumber" value="{{user.phoneNumber}}" class="form-control" [formControl]="phoneNumber" *ngIf="changeUser">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Adresse</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p *ngIf="!changeUser">{{user.adress}}</p>
+                                        <input type="text" id="adress" value="{{user.adress}}" class="form-control" [formControl]="adress" *ngIf="changeUser">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>code postal</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p *ngIf="!changeUser">{{user.zip}}</p>
+                                        <input type="text" id="zip" value="{{user.zip}}" class="form-control" [formControl]="zip" *ngIf="changeUser">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Ville</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p *ngIf="!changeUser">{{user.city}}</p>
+                                        <input type="text" id="city" value="{{user.city}}" class="form-control" [formControl]="city" *ngIf="changeUser">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Informations livraison</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p *ngIf="!changeUser">{{user.deliveryInformation}}</p>
+                                            <input type="text" id="deliveryInformation" value="{{user.deliveryInformation}}" class="form-control" [formControl]="deliveryInformation" *ngIf="changeUser">
+                                        </div>
+                                </div>
+                            <button type="button" class="btn btn-info" (click)="setUser()" type="submit" *ngIf="changeUser">Valider</button>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Your Bio</label><br/>
+                                <p>Your detail description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+  </div>

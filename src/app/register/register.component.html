@@ -1,0 +1,86 @@
+<div class="container mt-3">
+        <form class="form-horizontal" role="form">
+            <h2>Registration</h2>
+            <div class="form-group">
+                    <label for="email" class="col-sm-8 control-label">Email* </label>
+                    <div class="col-sm-9">
+                        <input type="email" id="email" placeholder="Email" class="form-control" name= "email" required autofocus [formControl]="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-8 control-label">Mot de passe*</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password" placeholder="Mot de passe" class="form-control" required autofocus [formControl]="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-8 control-label">Confirmer mot de passe*</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password2" placeholder="Confirmer mot de passe" class="form-control" required autofocus [formControl]="password2">
+                    </div>
+                </div>
+                <div class="mb-2">
+                        <label for="password" class="col-sm-8 control-label">Civilité*</label>
+                <div class="col-sm-9">
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Choisir'"
+                        [data]="dropdownList"
+                        [(ngModel)]="selectedItem"
+                        [settings]="dropdownSettings"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        [ngModelOptions]="{standalone: true}"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-8 control-label">Prénom*</label>
+                <div class="col-sm-9">
+                    <input type="text" id="firstName" placeholder="Prénom" class="form-control" required autofocus [formControl]="firstName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-8 control-label">Nom*</label>
+                <div class="col-sm-9">
+                    <input type="text" id="lastName" placeholder="Nom" class="form-control" required autofocus [formControl]="lastName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber" class="col-sm-8 control-label">Téléphone</label>
+                <div class="col-sm-9">
+                    <input type="phoneNumber" id="phoneNumber" placeholder="Téléphone" class="form-control" [formControl]="phoneNumber">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="adress" class="col-sm-8 control-label">Adresse*</label>
+                <div class="col-sm-9">
+                    <input type="text" id="adress" placeholder="Adresse" class="form-control" required autofocus [formControl]="adress">
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="zip" class="col-sm-8 control-label">Code postal*</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="zip" placeholder="Code postal" class="form-control" required autofocus [formControl]="zip">
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label for="city" class="col-sm-8 control-label">Ville*</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="city" placeholder="Ville" class="form-control" required autofocus [formControl]="city">
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label for="information" class="col-sm-8 control-label">Information livraison</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="information" placeholder="Information livraison" class="form-control" [formControl]="deliveryInformation">
+                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <span class="help-block">*Champs obligatoire</span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" (click)="registerUser()" type="submit">Register</button>
+        </form>
+    </div>
