@@ -3,9 +3,9 @@ import {HttpClient, HttpEventType} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Credential } from '../models/credential';
 import { User } from '../models/user';
-import { map } from  'rxjs/operators';
 import { Role } from '../models/role';
 import { environment } from 'src/environments/environment';
+import { Token } from '../models/token';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,10 @@ export class ApiService {
 
   public getGenders(){
     return this.httpClient.get<any[]>(this.APIEndpoint+'api/UserWebController/getGenders');
+  }
+
+  public getRefreshToken(token:Token){
+    return this.httpClient.post<any>(this.APIEndpoint+'api/UserWebController/refreshToken', token)
   }
 
 }

@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { ApiService } from './api.service';
 import { Credential } from '../models/credential';
 import { SubscriptionService } from './subscription.service';
+import { Token } from '../models/token';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,14 @@ export class AuthGuardService implements CanActivate{
   role:string;
   email:string;
   exp:string;
-  
+
   constructor(
-    private router:Router,    
+    private router:Router,
     private apiService:ApiService,
     private subscriptionService: SubscriptionService
     ) { }
 
-  canActivate( 
+  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       const expectedRole = route.data.expectedRole;
@@ -42,6 +43,25 @@ export class AuthGuardService implements CanActivate{
             }
           }
           var current_time = new Date().getTime() / 1000;
+          var expLeft = parseInt(this.exp) - current_time;
+          console.log("exp from backEnd : " + this.exp);
+          console.log("expLeft : " + expLeft );
+          //when the token has less than 30 minutes before expiration
+          //client requests for refresh token
+          //server returns new token with a new expiration date and update roles
+          if(expLeft < 1800){
+            var token = new Token();
+            token.token = localStorage.getItem('token');
+            this.apiService.getRefreshToken(token)
+            .subscribe((resp: any) => {
+              localStorage.setItem('token', resp.token);
+              this.subscriptionService.emitTokenSubject();
+              this.getDecodedAccessToken(resp.token);
+           }, err => {
+             console.log(err);
+             alert(err.message);
+           })
+          }
           if(current_time > parseInt(this.exp)){
             // Destroy local session; redirect to /login
             localStorage.removeItem('token');
@@ -88,7 +108,5 @@ getDecodedAccessToken(token: string): void {
     console.log(Error);
   }
 }
-
-
 
 }
