@@ -56,8 +56,8 @@ export class ApiService {
     return this.httpClient.get<any[]>(this.APIEndpoint+'api/UserWebController/getGenders');
   }
 
-  public getRefreshToken(token:Token){
-    return this.httpClient.post<any>(this.APIEndpoint+'api/UserWebController/refreshToken', token)
+  public getRefreshToken(){
+    return this.httpClient.get<any>(this.APIEndpoint+'api/UserWebController/refreshToken')
   }
 
 }
