@@ -44,15 +44,11 @@ export class AuthGuardService implements CanActivate{
           }
           var current_time = new Date().getTime() / 1000;
           var expLeft = parseInt(this.exp) - current_time;
-          console.log("exp from backEnd : " + this.exp);
-          console.log("expLeft : " + expLeft );
           //when the token has less than 30 minutes before expiration
           //client requests for refresh token
           //server returns new token with a new expiration date and update roles
           if(expLeft < 1800){
-            var token = new Token();
-            token.token = localStorage.getItem('token');
-            this.apiService.getRefreshToken(token)
+            this.apiService.getRefreshToken()
             .subscribe((resp: any) => {
               localStorage.setItem('token', resp.token);
               this.subscriptionService.emitTokenSubject();
