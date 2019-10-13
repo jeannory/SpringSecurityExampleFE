@@ -47,7 +47,8 @@ export class AuthGuardService implements CanActivate{
           //when the token has less than 30 minutes before expiration
           //client requests for refresh token
           //server returns new token with a new expiration date and update roles
-          if(expLeft < 1800){
+          //no action if the token has expired
+          if(expLeft < 1800 && expLeft > 0){
             this.apiService.getRefreshToken()
             .subscribe((resp: any) => {
               localStorage.setItem('token', resp.token);
