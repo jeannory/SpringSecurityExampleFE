@@ -16,7 +16,7 @@ export class SpaceComponent implements OnInit {
   firstName = new FormControl('');
   lastName = new FormControl('');
   phoneNumber = new FormControl('');
-  adress = new FormControl('');
+  address = new FormControl('');
   zip = new FormControl('');
   city = new FormControl('');
   deliveryInformation = new FormControl('');
@@ -98,8 +98,8 @@ export class SpaceComponent implements OnInit {
     if(this.phoneNumber.value){
       this.user.phoneNumber = this.phoneNumber.value;
     }
-    if(this.adress.value){
-      this.user.adress = this.adress.value;
+    if(this.address.value){
+      this.user.address = this.address.value;
     }
     if(this.zip.value){
       this.user.zip = this.zip.value;

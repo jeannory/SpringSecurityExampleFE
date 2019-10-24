@@ -5,7 +5,6 @@ import { Observable, Subject } from 'rxjs';
 import { ApiService } from './api.service';
 import { Credential } from '../models/credential';
 import { SubscriptionService } from './subscription.service';
-import { Token } from '../models/token';
 
 @Injectable({
   providedIn: 'root'

@@ -5,7 +5,6 @@ import { Credential } from '../models/credential';
 import { User } from '../models/user';
 import { Role } from '../models/role';
 import { environment } from 'src/environments/environment';
-import { Token } from '../models/token';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +24,11 @@ export class ApiService {
   }
 
   public getUser(email:string){
-    return this.httpClient.get<User[]>(this.APIEndpoint+'api/UserWebController/getUserDto?email=' + email);
+    return this.httpClient.get<User[]>(this.APIEndpoint+'api/UserWebController/getUser?email=' + email);
   }
 
   public getRoles(email:string){
-    return this.httpClient.get<User[]>(this.APIEndpoint+'api/UserWebController/getRoleDtos?email=' + email);
+    return this.httpClient.get<User[]>(this.APIEndpoint+'api/UserWebController/getUserRoles?email=' + email);
   }
 
   public setUser(user:User):any{

@@ -6,7 +6,7 @@ export class User {
     firstName:string;
     lastName:string;
     phoneNumber:string;
-    adress:string;
+    address:string;
     zip:string;
     city:string;
     deliveryInformation:string;
