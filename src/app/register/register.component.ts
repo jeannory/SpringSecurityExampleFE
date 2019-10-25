@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   firstName = new FormControl('');
   lastName = new FormControl('');
   phoneNumber = new FormControl('');
-  adress = new FormControl('');
+  address = new FormControl('');
   zip = new FormControl('');
   city = new FormControl('');
   deliveryInformation = new FormControl('');
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
     user.firstName = this.firstName.value;
     user.lastName = this.lastName.value;
     user.phoneNumber = this.phoneNumber.value;
-    user.adress = this.adress.value;
+    user.address = this.address.value;
     user.zip = this.zip.value;
     user.city = this.city.value;
     user.deliveryInformation = this.deliveryInformation.value;
